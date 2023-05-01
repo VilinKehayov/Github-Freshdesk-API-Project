@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import connection from './db.js'
 import { config } from "dotenv";
 config();
 
@@ -42,6 +43,21 @@ const getGitHubUserData = async () => {
       .then((response) => response.json())
       .then((data) => data.email));
   console.log("Retrieved email:", email);
+
+  // Insert user data into the MySQL database
+  const user = {
+    login: data.login,
+    name: data.name,
+    created_at: new Date(data.created_at),
+  };
+
+  connection.query("INSERT INTO users SET ?", user, (err, result) => {
+    if (err) {
+      console.error("Error inserting user:", err);
+    } else {
+      console.log("User inserted successfully with ID:", result.insertId);
+    }
+  });
 
   // Return user data with updated email field
   return { ...data, email };
@@ -134,6 +150,19 @@ const main = async () => {
       );
       await updateFreshdeskContact(existingContact.id, githubUserData);
       console.log(`Contact ${existingContact.id} updated successfully.`);
+
+      // Update the MySQL database with the contact's ID
+      connection.query(
+        "UPDATE users SET freshdesk_contact_id = ? WHERE login = ?",
+        [existingContact.id, githubUserData.login],
+        (err, result) => {
+          if (err) {
+            console.error("Error updating user:", err);
+          } else {
+            console.log("User updated successfully.");
+          }
+        }
+      );
     } else {
       // Create new contact in Freshdesk
       console.log(`Creating new contact in Freshdesk...`);
