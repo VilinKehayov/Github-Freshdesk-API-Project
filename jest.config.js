@@ -1,10 +1,13 @@
-export default {
-  // Use ESM for test files
-  extensionsToTreatAsEsm: [".ts"],
-
-  // Enable ESM support for tests
-  testEnvironment: "node",
-  transform: {},
-  transformIgnorePatterns: ["/node_modules/", "\\.pnp\\.[^\\/]+$"],
-  testMatch: ["**/tests/**/*.js", "**/?(*.)+(test).mjs"],
+export default  {
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest',
+  },
+  moduleFileExtensions: ['js'],
+  testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
+  collectCoverageFrom: ['**/*.{js}', '!**/node_modules/**', '!**/vendor/**'],
 };
+
+
+
+
