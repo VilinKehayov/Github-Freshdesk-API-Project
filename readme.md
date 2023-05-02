@@ -20,18 +20,16 @@ The program uses the node-fetch library to make API requests to GitHub and Fresh
 GITHUB_TOKEN=[GitHub personal access token]
 FRESHDESK_API_KEY=[Freshdesk API key]
 
-
 Replace [GitHub personal access token] with your actual GitHub personal access token and [Freshdesk API key] with your actual Freshdesk API key.
 
 Before running the program, make sure you have installed the required dependencies by running the following command:
 
 npm install
 
-
 HOW TO RUN THE TESTS.
 
 To run the tests using Jest:
 
 1.Open a terminal and navigate to the project directory
-2.Run npm test to run all tests in the tests/ directory
-3.To run a specific test file, run npm test -- <path/to/test/file>
+2.Run node --experimental-vm-modules node_modules/jest/bin/jest.js to run all tests in the tests/ directory
+3.To run a specific test file, run node --experimental-vm-modules node_modules/jest/bin/jest.js The file name.test.js
