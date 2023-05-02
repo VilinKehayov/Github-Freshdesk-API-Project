@@ -4,8 +4,8 @@ import { config } from "dotenv";
 config();
 
 // Parse command line arguments
-const githubUsername = 'VilinKehayov';
-const freshdeskSubdomain = 'vilinkehayov';
+const githubUsername = process.argv[2];
+const freshdeskSubdomain = process.argv[3];
 
 if (!githubUsername || !freshdeskSubdomain) {
   console.error("Please provide a GitHub username and a Freshdesk subdomain.");
