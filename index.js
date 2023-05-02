@@ -4,8 +4,8 @@ import { config } from "dotenv";
 config();
 
 // Parse command line arguments
-const githubUsername = process.argv[2];
-const freshdeskSubdomain = process.argv[3];
+const githubUsername = 'VilinKehayov';
+const freshdeskSubdomain = 'vilinkehayov';
 
 if (!githubUsername || !freshdeskSubdomain) {
   console.error("Please provide a GitHub username and a Freshdesk subdomain.");
@@ -19,7 +19,7 @@ const freshdeskContactsUrl = `https://${freshdeskSubdomain}.freshdesk.com/api/v2
 const freshdeskAuth = `${process.env.FRESHDESK_API_KEY}:X`;
 
 // Retrieve user data from GitHub API
-const getGitHubUserData = async () => {
+export const getGitHubUserData = async () => {
   const response = await fetch(githubUrl, {
     headers: {
       Authorization: `token ${process.env.GITHUB_TOKEN}`,
@@ -64,7 +64,7 @@ const getGitHubUserData = async () => {
 };
 
 // Find an existing contact in Freshdesk by email address
-const findExistingContact = async (email) => {
+export const findExistingContact = async (email) => {
   const url = `${freshdeskContactsUrl}?email=${email}`;
   console.log(url);
   const response = await fetch(url, {
@@ -83,7 +83,7 @@ const findExistingContact = async (email) => {
   return results.length > 0 ? results[0] : null;
 };
 
-const createFreshdeskContact = async (githubUserData) => {
+export const createFreshdeskContact = async (githubUserData) => {
   const data = {
     name: githubUserData.name || githubUserData.login,
     email: githubUserData.email,
@@ -109,7 +109,7 @@ const createFreshdeskContact = async (githubUserData) => {
 };
 
 // Update an existing contact in Freshdesk with new data
-const updateFreshdeskContact = async (contactId, githubUserData) => {
+export const updateFreshdeskContact = async (contactId, githubUserData) => {
   const data = {
     name: githubUserData.name || githubUserData.login,
     email: githubUserData.email,
