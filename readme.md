@@ -1,3 +1,80 @@
+Freshdesk Contact Creator
+
+This is a command-line program that creates or updates a contact in Freshdesk based on a GitHub user's data.
+
+Functionality
+
+The program does the following:
+
+1.Retrieves a GitHub user's data using their username.
+2.Searches for an existing contact in Freshdesk using the user's email.
+3.If an existing contact is found, updates the contact's data with the user's data.
+4.If an existing contact is not found, creates a new contact with the user's data.
+5.Inserts the new contact information into a MySQL database.
+
+Instructions
+
+To run the program, follow these steps:
+
+Clone the repository and navigate to the project directory.
+
+Install the required dependencies using the command npm install.
+
+Set up the required environment variables by creating a .env file in the project directory with the following fields:
+
+FRESHDESK_API_KEY=<your_freshdesk_api_key>
+FRESHDESK_SUBDOMAIN=<your_freshdesk_subdomain>
+GITHUB_TOKEN=<your_github_token>
+DB_HOST=<your_host>
+DB_USER=<your user>
+DB_PASSWORD=<your password>
+DB_NAME=<your_db_name>
+
+Replace the placeholders with your own values.
+
+Run the program using the command node index.js <github_username> <freshdesk_subdomain>.
+
+The program will output logs to the console indicating the actions taken.
+
+Dependencies
+
+1.axios: HTTP client for making requests to GitHub and Freshdesk APIs.
+2.dotenv: Loads environment variables from a .env file.
+3.mysql: MySQL client for connecting to a MySQL database.
+4.jest and axios-mock-adapter: Used for testing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Running the Program
 
 To run the program, you will need to provide two command line arguments:
